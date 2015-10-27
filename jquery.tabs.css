@@ -1,0 +1,74 @@
+.g-tabWrap {
+    margin: 20px;
+}
+.g-tabWrap .tabs {
+	overflow: hidden;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.g-tabWrap .tabs li {
+	float: left;
+	margin: 0 .5em 0 0;
+}
+
+.g-tabWrap .tabs a {
+	position: relative;
+	background: #ddd;
+	padding: .7em 3.5em;
+	float: left;
+	text-decoration: none;
+	color: #333;
+	border-radius: 5px 0 0 0;
+}
+
+.g-tabWrap .tabs a:hover, .g-tabWrap .tabs a:hover:after, .g-tabWrap .tabs a:focus, .g-tabWrap .tabs a:focus:after{
+	background: -moz-linear-gradient(90deg, #5B5F63, #868A8F);
+	background: -webkit-gradient(linear, 50% 100%, 50% 0%, from(#5B5F63),
+		to(#868A8F));
+	background: -webkit-linear-gradient(90deg, #5B5F63, #868A8F);
+	background: -o-linear-gradient(90deg, #5B5F63, #868A8F);
+	color: #fff;
+}
+
+.g-tabWrap .tabs a:focus {
+	outline: 0;
+}
+
+.g-tabWrap .tabs a:after {
+	content: '';
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	right: -.5em;
+	bottom: 0;
+	width: 1em;
+	background: #ddd;
+	box-shadow: 2px 2px 2px rgba(0, 0, 0, .4);
+	transform: skew(10deg);
+	border-radius: 0 5px 0 0;
+}
+
+.g-tabWrap .tabs .current a, .g-tabWrap .tabs .current a:after {
+	background: -moz-linear-gradient(90deg, #5B5F63, #868A8F);
+	background: -webkit-gradient(linear, 50% 100%, 50% 0%, from(#5B5F63),to(#868A8F));
+	background: -webkit-linear-gradient(90deg, #5B5F63, #868A8F);
+	background: -o-linear-gradient(90deg, #5B5F63, #868A8F);
+	z-index: 3;
+	color: #fff;
+}
+
+.g-tabWrap .content {
+	background: #fff;
+	padding: 2em;
+	position: relative;
+	z-index: 2;
+	border-radius: 0 5px 5px 5px;
+	box-shadow: 0 0 10px #ccc;
+}
+
+.g-tabWrap {
+	margin: 20px;
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+	<link rel="stylesheet" href="jquery.tabs.css">
+	<script src="jquery.js" ></script>
+	<script src="jquery.tabs.js" ></script>
+</head>
+<body>
+		<div class="g-tabWrap" >
+			<ul class="tabs tabs-riskInfoImg">
+		        <li><a href="#" data-url="test1" >test1</a></li>
+		        <li><a href="#" data-url="test2" >test2</a></li>
+		    </ul>
+		    <div class="content">
+		        <div id="test1"  style="display:none;">
+		        	test1test1test1
+		        </div>
+		        <div id="test2" style="display:none;">
+		       	 test2test2test2test2test2
+		        </div>
+		     </div>
+		</div>
+
+		<script >
+			jQuery(document).ready(function($) {
+				$.tabs();
+			});
+
+		</script>
+</body>
+</html>
