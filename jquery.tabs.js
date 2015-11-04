@@ -8,11 +8,17 @@
 (function($) {
 	/**
 	 * 参数说明<BR>
+	 * active: 指定被激活的tab页 (传data-url中的值) 
 	 * 
 	 */
+	/**
+	 * 方法说明<BR>
+	 * setActive: 指定被激活的tab页 ($.tabs("setActive","test1")) 
+	 * 
+	 */
+
 	var defaults = {
-//		open : undefined,
-//		close : undefined,
+		active:'',
 	};
 	var methods = null;
 	var _methods = null;
@@ -22,12 +28,20 @@
 			_methods.initEvent();
 			_methods.initDOM();
 		},
+		setActive:function(id){
+			_methods.setActive(id);
+		},
 	};
 	_methods = {
 		initDOM:function(){
 			$(".g-tabWrap .content>div").hide();
-			$(".g-tabWrap .tabs li:first").addClass("current");
-			$(".g-tabWrap .content>div:first").fadeIn();
+
+			if(defaults.active){
+				_methods.setActive(defaults.active);
+			}else{
+				$(".g-tabWrap .tabs li:first").addClass("current");
+				$(".g-tabWrap .content>div:first").fadeIn();
+			}
 			
 		},
 		initEvent : function() {
@@ -40,6 +54,12 @@
 				return false;
 			});
 		},
+		setActive:function(id){
+				$(".g-tabWrap .content>div").hide();
+				$(".g-tabWrap .tabs li.current").removeClass("current");
+				$(".g-tabWrap .tabs li a[data-url='"+id+"']").parent().addClass("current");
+				$(".g-tabWrap .content>div#"+id).fadeIn();
+		},
 		
 	};
 	$.fn.tabs = function() {
@@ -50,7 +70,7 @@
 		} else if (typeof (method) == 'object' || !method) {
 			method = methods.init;
 		} else {
-			$.error('Method ' + method + ' does not exist on jQuery.comanySelect');
+			$.error('Method ' + method + ' does not exist on jQuery.tabs');
 			return this;
 		}
 		return method.apply(this, arguments);
@@ -63,7 +83,7 @@
 		} else if (typeof (method) == 'object' || !method) {
 			method = methods.init;
 		} else {
-			$.error('Method ' + method + ' does not exist on jQuery.comanySelect');
+			$.error('Method ' + method + ' does not exist on jQuery.tabs');
 			return this;
 		}
 		return method.apply(this, arguments);
