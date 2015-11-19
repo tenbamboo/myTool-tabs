@@ -2,7 +2,6 @@
  * @todo tab页
  * @namespace tabs
  * @author haze.liu
- * @copyright (c) 2015, Dalian Roiland Information CO., LTD All Rights Reserved.
  * @since 2015年8月20日 下午2:34:22
  */
 (function($) {
