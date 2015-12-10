@@ -8,6 +8,8 @@
 	/**
 	 * 参数说明<BR>
 	 * active: 指定被激活的tab页 (传data-url中的值) 
+	 * loadBefore:function  加载之前执行的function
+	 * loadAfter:function  加载之之后执行的function
 	 * 
 	 */
 	/**
@@ -20,6 +22,8 @@
 	 var Tabs= function (element, options) {
 		this.element = $(element);
 		this.active = options.active ||  '';
+		this.loadBefore = options.loadBefore || function(){};
+		this.loadAfter = options.loadAfter || function(){};
 		this._init();
 		
 	}
@@ -44,13 +48,16 @@
 		},
 		initEvent : function() {
 			var $this=this.element;
+			var opt=this;
 			$this.find('.tabs a').click(function(e) {
 //				e.preventDefault();
+				var id=$(this).attr('data-url');
+				opt.loadBefore(id);
 				$this.find(".content>div").hide();
 				$this.find(".tabs li.current").removeClass("current");
 				$(this).parent().addClass("current")
 				$('#' + $(this).attr('data-url')).fadeIn();
-				return false;
+				opt.loadAfter(id);
 			});
 		},
 		setActive:function(id){

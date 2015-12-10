@@ -10,9 +10,9 @@
 <body>
 		<div class="g-tabWrap" id='tabContainer'>
 			<ul class="tabs ">
-		        <li><a href="#" data-url="test1" >test1</a></li>
-		        <li><a href="#" data-url="test2" >test2</a></li>
-		        <li><a href="#" data-url="test3" >test3</a></li>
+		        <li><a data-url="test1" >test1</a></li>
+		        <li><a data-url="test2" >test2</a></li>
+		        <li><a data-url="test3" >test3</a></li>
 		    </ul>
 		    <div class="content">
 		        <div id="test1">
@@ -31,9 +31,9 @@
 
 		<div class="g-tabWrap" id='tabContainer2'>
 			<ul class="tabs ">
-		        <li><a href="#" data-url="test1-2" >test1-2</a></li>
-		        <li><a href="#" data-url="test2-2" >test2-2</a></li>
-		        <li><a href="#" data-url="test3-2" >test3-2</a></li>
+		        <li><a data-url="test1-2" >test1-2</a></li>
+		        <li><a data-url="test2-2" >test2-2</a></li>
+		        <li><a data-url="test3-2" >test3-2</a></li>
 		    </ul>
 		    <div class="content">
 		        <div id="test1-2">
@@ -48,10 +48,17 @@
 		     </div>
 		</div>
 
+
 		<script >
 			jQuery(document).ready(function($) {
 				$("#tabContainer").tabs({
-					active:'test2'
+					active:'test2',
+					loadBefore:function(id){
+						console.log(id);
+					},
+					loadAfter:function(id){
+						console.log(id);
+					}
 				});
 				$("#tabContainer2").tabs();
 				$("#tabContainer").tabs("setActive","test2");

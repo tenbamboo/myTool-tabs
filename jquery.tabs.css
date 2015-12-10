@@ -22,6 +22,7 @@
 	text-decoration: none;
 	color: #333;
 	border-radius: 5px 0 0 0;
+	cursor: pointer;
 }
 
 .g-tabWrap .tabs a:hover, .g-tabWrap .tabs a:hover:after, .g-tabWrap .tabs a:focus, .g-tabWrap .tabs a:focus:after{
