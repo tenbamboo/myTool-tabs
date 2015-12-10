@@ -8,11 +8,11 @@
 	<script src="jquery.tabs.js" ></script>
 </head>
 <body>
-		<div class="g-tabWrap" >
+		<div class="g-tabWrap" id='tabContainer'>
 			<ul class="tabs ">
 		        <li><a href="#" data-url="test1" >test1</a></li>
 		        <li><a href="#" data-url="test2" >test2</a></li>
-		         <li><a href="#" data-url="test3" >test3</a></li>
+		        <li><a href="#" data-url="test3" >test3</a></li>
 		    </ul>
 		    <div class="content">
 		        <div id="test1">
@@ -27,13 +27,35 @@
 		     </div>
 		</div>
 
+
+
+		<div class="g-tabWrap" id='tabContainer2'>
+			<ul class="tabs ">
+		        <li><a href="#" data-url="test1-2" >test1-2</a></li>
+		        <li><a href="#" data-url="test2-2" >test2-2</a></li>
+		        <li><a href="#" data-url="test3-2" >test3-2</a></li>
+		    </ul>
+		    <div class="content">
+		        <div id="test1-2">
+		        	test1test1test1-2
+		        </div>
+		        <div id="test2-2">
+		       	 test2test2test2test2test2-2
+		        </div>
+		        <div id="test3-2">
+		       	 test3test3test3test3-2
+		        </div>
+		     </div>
+		</div>
+
 		<script >
 			jQuery(document).ready(function($) {
-				$.tabs({
+				$("#tabContainer").tabs({
 					active:'test2'
 				});
-				$.tabs();
-				$.tabs("setActive","test2")
+				$("#tabContainer2").tabs();
+				$("#tabContainer").tabs("setActive","test2");
+
 			});
 
 		</script>

@@ -16,75 +16,79 @@
 	 * 
 	 */
 
-	var defaults = {
-		active:'',
-	};
-	var methods = null;
-	var _methods = null;
-	methods = {
-		init : function(options) {
-			defaults = $.extend(defaults, options);
-			_methods.initEvent();
-			_methods.initDOM();
-		},
-		setActive:function(id){
-			_methods.setActive(id);
-		},
-	};
-	_methods = {
-		initDOM:function(){
-			$(".g-tabWrap .content>div").hide();
 
-			if(defaults.active){
-				_methods.setActive(defaults.active);
+	 var Tabs= function (element, options) {
+		this.element = $(element);
+		this.active = options.active ||  '';
+		this._init();
+		
+	}
+
+	Tabs.prototype ={
+		constructor: Tabs,
+		_init:function(){
+			this.initEvent();
+			this.initDOM();
+		},
+		initDOM:function(){
+			var $this=this.element;
+			$this.find(".content>div").hide();
+
+			if(this.active){
+				this.setActive(this.active);
 			}else{
-				$(".g-tabWrap .tabs li:first").addClass("current");
-				$(".g-tabWrap .content>div:first").fadeIn();
+				$this.find(".tabs li:first").addClass("current");
+				$this.find(".content>div:first").fadeIn();
 			}
 			
 		},
 		initEvent : function() {
-			$('.g-tabWrap .tabs a').click(function(e) {
+			var $this=this.element;
+			$this.find('.tabs a').click(function(e) {
 //				e.preventDefault();
-				$(".g-tabWrap .content>div").hide();
-				$(".g-tabWrap .tabs li.current").removeClass("current");
+				$this.find(".content>div").hide();
+				$this.find(".tabs li.current").removeClass("current");
 				$(this).parent().addClass("current")
 				$('#' + $(this).attr('data-url')).fadeIn();
 				return false;
 			});
 		},
 		setActive:function(id){
-				$(".g-tabWrap .content>div").hide();
-				$(".g-tabWrap .tabs li.current").removeClass("current");
-				$(".g-tabWrap .tabs li a[data-url='"+id+"']").parent().addClass("current");
-				$(".g-tabWrap .content>div#"+id).fadeIn();
+			var $this=this.element;
+			$this.find(".content>div").hide();
+			$this.find(".tabs li.current").removeClass("current");
+			$this.find(".tabs li a[data-url='"+id+"']").parent().addClass("current");
+			$this.find(".content>div#"+id).fadeIn();
 		},
+
+
+
 		
 	};
-	$.fn.tabs = function() {
-		var method = arguments[0];
-		if (methods[method]) {
-			method = methods[method];
-			arguments = Array.prototype.slice.call(arguments, 1);
-		} else if (typeof (method) == 'object' || !method) {
-			method = methods.init;
-		} else {
-			$.error('Method ' + method + ' does not exist on jQuery.tabs');
+	$.fn.tabs = function (option) {
+		var args = Array.apply(null, arguments);
+		args.shift();
+		var internal_return;
+		this.each(function () {
+			var $this = $(this),
+				data = $this.data('tabs'),
+				options = typeof option == 'object' && option;
+			if (!data) {
+				$this.data('tabs', (data = new Tabs(this, $.extend({}, $.fn.tabs.defaults, options))));
+			}
+			if (typeof option == 'string' && typeof data[option] == 'function') {
+				internal_return = data[option].apply(data, args);
+				if (internal_return !== undefined) {
+					return false;
+				}
+			}
+		});
+		if (internal_return !== undefined)
+			return internal_return;
+		else
 			return this;
-		}
-		return method.apply(this, arguments);
 	};
-	$.tabs = function() {
-		var method = arguments[0];
-		if (methods[method]) {
-			method = methods[method];
-			arguments = Array.prototype.slice.call(arguments, 1);
-		} else if (typeof (method) == 'object' || !method) {
-			method = methods.init;
-		} else {
-			$.error('Method ' + method + ' does not exist on jQuery.tabs');
-			return this;
-		}
-		return method.apply(this, arguments);
-	};
+	$.fn.tabs.defaults = {};
+
+
 })(jQuery);
