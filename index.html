@@ -48,6 +48,8 @@
 		     </div>
 		</div>
 
+		<a id="getActive">获取激活的页面id</a>
+
 
 		<script >
 			jQuery(document).ready(function($) {
@@ -62,6 +64,9 @@
 				});
 				$("#tabContainer2").tabs();
 				$("#tabContainer").tabs("setActive","test2");
+				$("#getActive").click(function(){
+					alert($("#tabContainer").tabs("getActive"));
+				});
 
 			});
 

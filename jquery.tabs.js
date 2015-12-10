@@ -14,7 +14,8 @@
 	 */
 	/**
 	 * 方法说明<BR>
-	 * setActive: 指定被激活的tab页 ($.tabs("setActive","test1")) 
+	 * setActive: 指定被激活的tab页 ($("#tabContainer").tabs("setActive","test1"));
+	 * getActive:获取激活的tab页的id ($("#tabContainer").tabs("getActive"))
 	 * 
 	 */
 
@@ -66,6 +67,10 @@
 			$this.find(".tabs li.current").removeClass("current");
 			$this.find(".tabs li a[data-url='"+id+"']").parent().addClass("current");
 			$this.find(".content>div#"+id).fadeIn();
+		},
+		getActive:function(){
+			var $this=this.element;
+			return $this.find(".tabs li.current a").attr('data-url');
 		},
 
 
